@@ -1,20 +1,5 @@
 
-// $('.btn').click(function () {
-//   $(this).fadeOut(100).fadeIn(100)
-//   playSound("." + [event.key])
-// });
 
-// function playSound(key) {
-//   switch (key) {
-//     case "greenSound":
-//       var audio = new Audio("sounds/" + randomChosenColour +".mp3")
-//       audio.play();
-//       break;
-
-//     default: console.log(innerHTML)
-//       break;
-//   }
-// }
 var buttonColours = ["red", "blue", "green", "yellow"];
 
 var gamePattern = [];
@@ -31,6 +16,22 @@ function nextSequence() {
   audio.play();
 }
 
+$('.btn').click(function () {
+  var userChosenColour = $(this).attr("id");
+  $("#" + userChosenColour).fadeOut(100).fadeIn(100)
+});
+
+// function playSound(key) {
+//   switch (key) {
+//     case "greenSound":
+//       var audio = new Audio("sounds/" + randomChosenColour + ".mp3")
+//       audio.play();
+//       break;
+
+//     default: console.log(innerHTML)
+//       break;
+//   }
+// }
 
 
 
