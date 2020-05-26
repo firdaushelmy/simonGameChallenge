@@ -42,7 +42,6 @@ $(document).keydown(function () {
 
 function checkAnswer(currentLevel) {
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
-    console.log("Success!");
     if (userClickedPattern.length === gamePattern.length) {
       setTimeout(function () {
         nextSequence();
@@ -50,10 +49,19 @@ function checkAnswer(currentLevel) {
     }
   }
   else {
-    console.log("Wrong sequence!")
+    playSound("wrong");
+    animateGameOver()
+    startOver()
   }
 }
 
+// reset vars. gets called when checkAnswer is !==
+function startOver() {
+  level = 0;
+  gamePattern = []
+  started = false
+
+}
 
 // QOL code
 function playSound(name) {
@@ -67,4 +75,13 @@ function animatePress(currentColour) {
   setTimeout(function () {
     $("#" + currentColour).removeClass("pressed")
   }, 100)
+}
+
+function animateGameOver() {
+  $("h1").html("Game Over, Press Any Key to Restart");
+  $("body").addClass("game-over")
+
+  setTimeout(function () {
+    $("body").removeClass("game-over")
+  }, 200)
 }
