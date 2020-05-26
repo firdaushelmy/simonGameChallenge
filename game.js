@@ -8,15 +8,15 @@ $('.btn').click(function () {
   userClickedPattern.push(userChosenColour);
   playSound(userChosenColour)
   animatePress(userChosenColour)
+  checkAnswer([userClickedPattern.length - 1])
 });
 
 // server side code
 var buttonColours = ["red", "blue", "green", "yellow"];
 var level = 0
 var gamePattern = [];
-
 function nextSequence() {
-
+  userClickedPattern = [];
   var randomNumber = Math.round(Math.random() * 3);
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
@@ -37,6 +37,23 @@ $(document).keydown(function () {
     started = true
   }
 })
+
+// check answer code
+
+function checkAnswer(currentLevel) {
+  if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+    console.log("Success!");
+    if (userClickedPattern.length === gamePattern.length) {
+      setTimeout(function () {
+        nextSequence();
+      }, 1000);
+    }
+  }
+  else {
+    console.log("Wrong sequence!")
+  }
+}
+
 
 // QOL code
 function playSound(name) {
