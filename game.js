@@ -12,7 +12,7 @@ $('.btn').click(function () {
 
 // server side code
 var buttonColours = ["red", "blue", "green", "yellow"];
-
+var level = 0
 var gamePattern = [];
 
 function nextSequence() {
@@ -24,8 +24,21 @@ function nextSequence() {
   $("#" + randomChosenColour).fadeOut(100).fadeIn(100);
   playSound(randomChosenColour)
   animatePress(randomChosenColour)
+  level++
+  $("h1").html("Level " + level)
 }
 
+// code before game started. only run once.
+var started = false
+$(document).keydown(function () {
+
+  if (!started) {
+    nextSequence()
+    started = true
+  }
+})
+
+// QOL code
 function playSound(name) {
   var audio = new Audio("sounds/" + name + ".mp3")
   audio.play();
