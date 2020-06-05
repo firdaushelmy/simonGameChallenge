@@ -65,7 +65,7 @@ function startOver() {
 
 // QOL code
 function playSound(name) {
-  var audio = new Audio("sounds/" + name + ".mp3")
+  var audio = new Audio("/public/sounds/" + name + ".mp3")
   audio.play();
 }
 
